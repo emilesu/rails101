@@ -20,7 +20,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:post])
+  end
+
+  def destroy
+    @post = Post.find(params[:post])
+    @post.destroy
+    flash[:alert] = "Post deleted"
+    redirect_to posts_path
+  end
+
   private
+
 
   def post_params
     params.require(:post).permit(:content)
